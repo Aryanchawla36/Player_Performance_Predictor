@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from IPython.display import Image, display
+import math
 
 '''
 Weather Data Info 
@@ -45,5 +46,8 @@ scaler = MinMaxScaler()
 weather_data[['temperature', 'humidity', 'wind_mph']] = scaler.fit_transform(
     weather_data[['temperature', 'humidity', 'wind_mph']]
 )
+
+#Clean up any rows with no values: Nan
+weather_data.dropna(axis=0, inplace=True)
 
 weather_data.to_csv('cleaned_weather_data.csv', index=False)
